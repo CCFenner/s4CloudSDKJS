@@ -1,0 +1,12 @@
+ID: s4CloudSDKJS
+_schema-version: '2.1'
+version: 0.0.1
+
+modules:
+ - name: s4SdkJs
+   type: nodejs
+   path: s4SdkJs
+   provides:
+    - name: s4SdkJs_api
+      properties:
+         url: ${default-url}
