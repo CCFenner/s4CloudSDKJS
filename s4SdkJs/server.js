@@ -1,7 +1,6 @@
 /*eslint no-console: 0, no-unused-vars: 0, no-undef:0*/
 /*eslint-env node, es6 */
 "use strict";
-
 var xsenv = require("@sap/xsenv");
 var port = process.env.PORT || 3000;
 var server = require("http").createServer();
@@ -15,11 +14,12 @@ app.get("/", (req, res) => {
 });
 
 app.get("/businesspartners", (req, res) => {
-	var BusinessPartner = require("cloud-sdk-vdm-business-partner-service");
-	BusinessPartner.requestBuilder()
+	var bp = require("@sap/cloud-sdk-vdm-business-partner-service");
+
+	bp.BusinessPartner.requestBuilder()
 		.getAll()
 		.top(100)
-		.execute()
+		.execute({url: "https://qgyx1mabatjzydhfs4mock-s4mocknode.hanapm.local.com:30033/"})
 		.then((businessPartners) => {
 			res.status(200).send(businessPartners);
 		});
